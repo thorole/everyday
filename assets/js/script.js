@@ -1,51 +1,32 @@
-document.getElementById("default").addEventListener("click", openOrClose);
+let selects = document.getElementsByClassName("select");
+let options = document.getElementsByTagName("option");
+let wrapper = document.getElementById("wrapper");
+selects[0].style.display = "none";
 
-
-// Open or close the dropdown on click
-function openOrClose() {
-    let dropdown = document.getElementById("dropdown");
-    let chosenOption = document.getElementById("default");
-    if (dropdown.classList.contains("hide")) {
-        dropdown.classList.remove("hide");
-        chosenOption.classList.add("focus-border");
-    }
-    else {
-        dropdown.classList.add("hide");
-        chosenOption.classList.remove("focus-border");
-    }
+for (let i = 0; i < selects.length; i++) {
+    let div = document.createElement("div");
+    let wrapper = document.getElementById("wrapper");
+    div.innerHTML = options[0].innerHTML;
+    wrapper.appendChild(div);
 }
 
+for (let i = 0; i < options.length; i++) {
+    let opt = document.createElement("div");
+    opt.classList.add("option")
+    opt.style.display = "none";
+    opt.innerHTML = options[i].innerHTML;
+    wrapper.appendChild(opt);
+}
 
-// Eventlisteners for the four different options.
-document.getElementById("option1").addEventListener("click", function () {
-
-    document.getElementById("option-text").innerText = " Option 1";
-    openOrClose();
-});
-
-document.getElementById("option2").addEventListener("click", function () {
-    document.getElementById("option-text").innerHTML = " Option 2";
-    openOrClose();
-});
-
-document.getElementById("option3").addEventListener("click", function () {
-    document.getElementById("option-text").innerHTML = " Option 3";
-    openOrClose();
-});
-
-document.getElementById("option4").addEventListener("click", function () {
-    document.getElementById("option-text").innerHTML = " Option 4";
-    openOrClose();
-});
-
-
-//As far as I got before deadline.
-document.addEventListener("keydown", function () {
-    let dropdown = document.getElementById("dropdown");
-    let chosenOption = document.getElementById("default");
-    if (dropdown.classList.contains("hide")) {
-        dropdown.classList.remove("hide");
-        chosenOption.classList.add("focus-border");
+wrapper.addEventListener("click", function () {
+    for (let i = 0; i < options.length; i++) {
+        let options = document.getElementsByClassName("option")
+        if (options[i].style.display == "block") {
+            options[i].style.display = "none";
+        }
+        else {
+            options[i].style.display = "block";
+        }
     }
 });
 
