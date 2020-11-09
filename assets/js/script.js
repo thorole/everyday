@@ -1,32 +1,36 @@
+/* Get the selects and the wrappers */
 let selects = document.getElementsByClassName("select");
-let options = document.getElementsByTagName("option");
-let wrapper = document.getElementById("wrapper");
-selects[0].style.display = "none";
+let wrappers = document.getElementsByClassName("wrapper");
 
-for (let i = 0; i < selects.length; i++) {
-    let div = document.createElement("div");
-    let wrapper = document.getElementById("wrapper");
-    div.innerHTML = options[0].innerHTML;
-    wrapper.appendChild(div);
-}
 
-for (let i = 0; i < options.length; i++) {
-    let opt = document.createElement("div");
-    opt.classList.add("option")
-    opt.style.display = "none";
-    opt.innerHTML = options[i].innerHTML;
-    wrapper.appendChild(opt);
-}
+/* Loop through selects */
+for (let i = 0, j = 0; i < selects.length; i++, j++) {
+    selects[i].style.display = "none";                   // Hide original select
+    let options = selects[i].children;                   // Get the options  
+    let defaultOption = document.createElement("div");   // Create replacement for select
+    defaultOption.innerHTML = options[0].innerHTML;      // Set default 
+    defaultOption.classList.add("all-options");             
+    wrappers[j].appendChild(defaultOption);              // Append select to wrapper
 
-wrapper.addEventListener("click", function () {
-    for (let i = 0; i < options.length; i++) {
-        let options = document.getElementsByClassName("option")
-        if (options[i].style.display == "block") {
-            options[i].style.display = "none";
-        }
-        else {
-            options[i].style.display = "block";
-        }
+    for (let i = 0; i < options.length; i++) {           // Loop through options
+        let opt = document.createElement("div");         // Create replacement for option
+        opt.classList.add("option")                         
+        opt.style.display = "none";                      // Hide options
+        opt.innerHTML = options[i].innerHTML;            // Set option text according to original option
+        wrappers[j].appendChild(opt);                    // Append option to wrapper
+        opt.addEventListener("click", function () {      // Wait for click on any option
+            defaultOption.innerHTML = this.innerHTML;    // Set default option text equal to option clicked  
+        });
+        wrappers[j].addEventListener("click", function () {
+            if (opt.style.display == "block") {          // If visible, hide
+                opt.style.display = "none";                 
+            }
+            else {                                       // else display
+                opt.style.display = "block";
+            }
+        });
     }
-});
+}
+
+
 

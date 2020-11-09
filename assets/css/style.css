@@ -1,0 +1,42 @@
+.all-options,
+.option {
+    height: 2rem;
+    line-height: 2rem;
+    width: 8rem;
+    overflow: hidden;
+    border-radius: 3px;
+    padding-left: 0.5rem;
+}
+
+.all-options {
+    border: 1px solid black;
+}
+
+.all-options::after {
+  display: inline-block;
+  margin-right: 0;
+  border: solid black;
+  content: "";
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+}
+
+.option:hover {
+    background-color: skyblue;
+}
+
+.option {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.wrapper {
+    width: 40%;
+}
